@@ -26,10 +26,11 @@
 .content h3 {
   font-size: 1.25rem;
   color: #2c292b;
+  margin-bottom: 5px;
 }
 
 .actions {
-  padding: 1.5rem;
+  padding: 1rem;
   text-align: center;
 }
 

@@ -21,6 +21,7 @@ function MeetupDetails(props) {
 
     router.push('/');
   }
+  console.log(props);
 
   return (
     <Fragment>
@@ -32,6 +33,7 @@ function MeetupDetails(props) {
         image={props.meetupData.image}
         title={props.meetupData.title}
         address={props.meetupData.address}
+        date={props.meetupData.date}
         description={props.meetupData.description}
         onDeleteMeetup={deleteMeetupHandler}
       />
@@ -77,6 +79,7 @@ export async function getStaticProps(context) {
         id: selectedMeetup._id.toString(),
         title: selectedMeetup.title,
         address: selectedMeetup.address,
+        date: selectedMeetup.date,
         image: selectedMeetup.image,
         description: selectedMeetup.description,
       },

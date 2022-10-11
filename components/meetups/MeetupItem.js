@@ -5,7 +5,7 @@ import classes from './MeetupItem.module.css';
 
 function MeetupItem(props) {
   const router = useRouter();
-
+  const date = new Date(props.date).toLocaleDateString('en-US');
   function showDetailsHandler() {
     router.push('/' + props.id);
   }
@@ -18,6 +18,7 @@ function MeetupItem(props) {
         </div>
         <div className={classes.content}>
           <h3>{props.title}</h3>
+          <date>{date}</date>
           <address>{props.address}</address>
         </div>
         <div className={classes.actions}>
