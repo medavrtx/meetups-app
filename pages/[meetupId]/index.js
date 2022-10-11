@@ -1,10 +1,27 @@
 import { Fragment } from 'react';
 import Head from 'next/head';
 import { MongoClient, ObjectId } from 'mongodb';
+import { useRouter } from 'next/router';
 
 import MeetupDetail from '../../components/meetups/MeetupDetail';
 
 function MeetupDetails(props) {
+  const router = useRouter();
+
+  async function deleteMeetupHandler() {
+    const response = await fetch('/api/meetup', {
+      method: 'DELETE',
+      body: JSON.stringify(props.meetupData.id),
+      headers: {
+        'Content-Type': 'application/json',
+      },
+    });
+
+    const data = await response.json();
+
+    router.push('/');
+  }
+
   return (
     <Fragment>
       <Head>
@@ -16,6 +33,7 @@ function MeetupDetails(props) {
         title={props.meetupData.title}
         address={props.meetupData.address}
         description={props.meetupData.description}
+        onDeleteMeetup={deleteMeetupHandler}
       />
     </Fragment>
   );

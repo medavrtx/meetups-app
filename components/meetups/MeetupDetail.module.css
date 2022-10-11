@@ -5,3 +5,18 @@
 .detail img {
   width: 100%;
 }
+
+.actions button {
+  font: inherit;
+  cursor: pointer;
+  color: #770000;
+  border: 1px solid #770000;
+  background-color: transparent;
+  padding: 0.5rem 1.5rem;
+  border-radius: 4px;
+}
+
+.actions button:hover,
+.actions button:active {
+  background-color: #ffe2e2;
+}
