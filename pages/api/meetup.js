@@ -2,35 +2,43 @@ import { MongoClient, ObjectId } from 'mongodb';
 
 async function handler(req, res) {
   if (req.method === 'POST') {
-    const data = req.body;
+    try {
+      const data = req.body;
 
-    const client = await MongoClient.connect(process.env.MONGO_URI);
-    const db = client.db();
+      const client = await MongoClient.connect(process.env.MONGO_URI);
+      const db = client.db();
 
-    const meetupsCollection = db.collection('meetups');
+      const meetupsCollection = db.collection('meetups');
 
-    const result = await meetupsCollection.insertOne(data);
+      const result = await meetupsCollection.insertOne(data);
 
-    console.log(result);
+      console.log(result);
 
-    client.close();
+      client.close();
 
-    res.status(201).json({ message: 'Meetup inserted!' });
+      res.status(201).json({ message: 'Meetup inserted!' });
+    } catch {
+      res.status(400).json({ message: 'Error' });
+    }
   } else if (req.method === 'DELETE') {
-    const id = new ObjectId(req.body);
+    try {
+      const id = new ObjectId(req.body);
 
-    const client = await MongoClient.connect(process.env.MONGO_URI);
-    const db = client.db();
+      const client = await MongoClient.connect(process.env.MONGO_URI);
+      const db = client.db();
 
-    const meetupsCollection = db.collection('meetups');
+      const meetupsCollection = db.collection('meetups');
 
-    const result = await meetupsCollection.deleteOne({ _id: id });
+      const result = await meetupsCollection.deleteOne({ _id: id });
 
-    console.log(result);
+      console.log(result);
 
-    client.close();
+      client.close();
 
-    res.status(201).json({ message: 'Meetup deleted!' });
+      res.status(201).json({ message: 'Meetup deleted!' });
+    } catch {
+      res.status(400).json({ message: 'Error' });
+    }
   }
 }
 
